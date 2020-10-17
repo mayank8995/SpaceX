@@ -27,4 +27,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Responsive View
-This application can be viewed in (Mobile,iPad,Desktop).Mobile view supported above 300px.
+This application can be viewed in (Mobile,iPad,Desktop).
+
+## Technology Used
+This project is built on Angular version 8,HTML5,SCSS.
+
+## How to run the project?
+1. You should have Angular development environment.For more information please visit https://angular.io/guide/setup-local.
+2. After the environment setup, fork the project and run npm install command to install dependencies used in the project.These dependencies are defined in package.json file.
+3. Run ng serve command in terminal and then hit localhost:4200 in Chrome.
+
+
