@@ -1,0 +1,75 @@
+<div class="main-div">
+    <div class="web-application-name" >SpaceX Launch Programs</div>
+<div class="main-container">
+    <div class="block col-2 filter-container">
+        <div class="margin-around text-align-left" style="font-size:20px"><label >Filters</label></div>
+        <div class="margin-around" style="text-decoration: underline;">Launch Year</div>
+        <div class="margin-around margin-l-r">
+            <div class="left">
+                <div class="col-1 year-button"><button *ngFor="let btn1 of nextlaunchYear;let j=index" type="button" class="btn" (click)="$event.stopPropagation()" (click)="filterLaunchPrograms1(j)">{{btn1}}</button></div>
+            </div>
+            <div class="right">
+                <div class="col-1 year-button"><button *ngFor="let btn2 of launchYear ;let m=index" type="button" class="btn" (click)="$event.stopPropagation()" (click)="filterLaunchPrograms2(m)">{{btn2}}</button></div>
+            </div>
+        </div>
+        <div class="margin-around" style="text-decoration: underline;">Successfull Launch</div>
+        <div class="margin-around margin-l-r" >
+            <div class="left">
+                <div class="col-1 year-button"><button  type="button" class="btn" (click)="onlySuccessLaunch(true)">True</button></div>
+            </div>
+            <div class="right">
+                <div class="col-1 year-button"><button  type="button" class="btn" (click)="onlySuccessLaunch(false)">False</button></div>
+            </div>
+        </div>
+        <div class="margin-around" style="text-decoration: underline;">Successfull Landing</div>
+        <div class="margin-around margin-l-r">
+            <div class="left">
+                <div class="col-1 year-button"><button  type="button" class="btn" (click)="onlySuccessLanding(true)">True</button></div>
+            </div>
+            <div class="right">
+                <div class="col-1 year-button"><button  type="button" class="btn" (click)="onlySuccessLanding(false)">False</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="block col-10 program-container">
+        <!-- <div> -->
+            <div *ngFor="let launchData of spaceXlaunchData; let i=index" class="block col-3 program">
+             
+               <ng-container *ngIf="launchData && !(this.showLoader)">
+                <div class="image-div">
+                    <img class="dimensions" src="{{launchData?.links?.mission_patch_small}}">
+                   </div>
+                   <div class="ml-30">
+                       <div class="mb-5 text-align-left">
+                           <label class="mission-name">{{launchData?.mission_name}}#{{i+1}}</label>
+                       </div>
+                       <div *ngIf="launchData?.mission_id?.length>0; else other" class="mb-5 mission-ids text-align-left">
+                        <label >Mission Ids</label>
+                       <ul class="ullist" *ngFor="let missionId of launchData?.mission_id">
+                        <li class="value">{{missionId}}</li>
+                      </ul> 
+                       </div>
+                       <ng-template #other>
+                        <div class="text-align-left">
+                        <label >Mission Ids</label>
+                       <ul class="ullist">
+                        <li></li>
+                       </ul> 
+                        </div>
+                       </ng-template>
+                      <div class="text-align-left mb-5"><label>Launch Year:</label><span class="value">{{launchData?.launch_year}}</span></div>
+                      <div class="text-align-left mb-5"><label>Successful Launch:</label><span class="value" >{{launchData?.launch_success}}</span></div>
+                      <div class="text-align-left mb-5 "><label>Successful Landing:</label><span class="value" *ngIf="launchData?.rocket?.first_stage?.cores[0]?.land_success !=null;else first" >{{launchData?.rocket?.first_stage?.cores[0]?.land_success}}</span>
+                        <ng-template #first>
+                            <span  class="value">false</span>
+                        </ng-template>
+                    </div>
+                   </div>
+               </ng-container>
+
+            </div>
+            <div *ngIf="showLoader" class="loader"></div>
+    </div>
+</div>
+</div>
+
